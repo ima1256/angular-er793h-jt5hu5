@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivateRoute } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product, products } from '../products';
 
 @Component({
@@ -13,8 +13,10 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const routeParams = this.route.snapShot.paramMap;
+    const routeParams = this.route.snapshot.paramMap;
     const productIdFromRoute = Number(routeParams.get('productId'));
-    this.product = products.find(product => product.id === productIdFromRoute);
+    this.product = products.find(
+      (product) => product.id === productIdFromRoute
+    );
   }
 }
